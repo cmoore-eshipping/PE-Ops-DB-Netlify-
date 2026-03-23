@@ -1083,7 +1083,7 @@ function renderAccount(){
         ${['LTL','FTL','Expedited','Courier'].map(mode=>{
           const m=mix[mode];
           if(!m||!m.spend) return '';
-          const pctVal=(m.spend/curr.spend*100).toFixed(1);
+          const pctVal=(m.spend/totalSpend*100).toFixed(1);
           return `<div class="bar-row">
             <div class="bar-lbl" style="min-width:100px;">${mode}</div>
             <div class="bar-track"><div class="bar-fill ${mode==='LTL'?'navy-grad':mode==='FTL'?'orange-grad':mode==='Expedited'?'teal-grad':'green-grad'}" style="width:${pctVal}%"></div></div>
@@ -1091,6 +1091,12 @@ function renderAccount(){
             <div style="font-size:10px;color:var(--slate);font-family:'JetBrains Mono',monospace;min-width:60px;text-align:right;">${fmtN(m.ships)} shpts</div>
           </div>`;
         }).join('')}
+        ${intl.spend>0?`<div class="bar-row">
+          <div class="bar-lbl" style="min-width:100px;">International</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${(intl.spend/totalSpend*100).toFixed(1)}%;background:linear-gradient(90deg,#7c4dab,#a06dd0);"></div></div>
+          <div class="bar-val">${fmt(intl.spend)} · ${(intl.spend/totalSpend*100).toFixed(1)}%</div>
+          <div style="font-size:10px;color:var(--slate);font-family:'JetBrains Mono',monospace;min-width:60px;text-align:right;">${fmtN(intl.ships)} shpts</div>
+        </div>`:''}
       </div>
     </div>
 
