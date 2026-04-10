@@ -440,9 +440,9 @@ function getModeMix(months, account=null){
   });
   const mix={};
   rows.forEach(r=>{
-    if(!mix[r.Mode]) mix[r.Mode]={spend:0,ships:0};
-    mix[r.Mode].spend+=(r.spend||0);
-    mix[r.Mode].ships+=(r.shipments||0);
+    if(!mix[r.mode]) mix[r.mode]={spend:0,ships:0};
+    mix[r.mode].spend+=(r.spend||0);
+    mix[r.mode].ships+=(r.shipments||0);
   });
   return mix;
 }
